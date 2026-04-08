@@ -11,18 +11,26 @@ function normalizePostgresUrl(url) {
 }
 
 function resolveDatabaseUrl() {
-  const candidates = [
+  const baseCandidates = [
     process.env.DATABASE_URL,
-    process.env.POSTGRES_URL,
-    process.env.POSTGRES_PRISMA_URL,
     process.env.POSTGRES_URL_NON_POOLING,
+    process.env.POSTGRES_PRISMA_URL,
+    process.env.POSTGRES_URL,
   ].filter(Boolean);
 
-  if (candidates.length === 0) {
+  if (baseCandidates.length === 0) {
     return "";
   }
 
   const onVercel = Boolean(process.env.VERCEL);
+  const candidates = onVercel
+    ? [
+        process.env.DATABASE_URL,
+        process.env.POSTGRES_URL_NON_POOLING,
+        process.env.POSTGRES_PRISMA_URL,
+        process.env.POSTGRES_URL,
+      ].filter(Boolean)
+    : baseCandidates;
 
   if (onVercel) {
     const remote = candidates.find((u) => !isLocalDatabaseUrl(u));
