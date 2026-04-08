@@ -1,0 +1,32 @@
+{
+  "name": "order-tracking-system",
+  "version": "1.0.0",
+  "description": "Monorepo for order tracking system",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace backend",
+    "dev:frontend": "npm run dev --workspace frontend",
+    "build": "npm run build --workspace backend && npm run build --workspace frontend",
+    "lint": "npm run lint --workspace backend && npm run lint --workspace frontend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PavanSuryaChintada/OrderTrackingSystem.git"
+  },
+  "keywords": [
+    "order-tracking",
+    "nodejs",
+    "react",
+    "sql"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PavanSuryaChintada/OrderTrackingSystem/issues"
+  },
+  "homepage": "https://github.com/PavanSuryaChintada/OrderTrackingSystem#readme"
+}
