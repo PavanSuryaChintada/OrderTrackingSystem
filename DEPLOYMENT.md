@@ -10,8 +10,9 @@ This project is deployed as two Vercel projects:
 Set Vercel project root directory to: `backend`
 
 ### Required environment variables
-- `DATABASE_URL` = your managed PostgreSQL connection string
-- `PORT` = `4000` (optional on Vercel, included for consistency)
+- **Database:** set a **remote** Postgres URL. The app accepts, in order: `DATABASE_URL`, `POSTGRES_URL`, `POSTGRES_PRISMA_URL`, `POSTGRES_URL_NON_POOLING` (Supabase / Vercel integration often provides `POSTGRES_URL`).
+- **Do not** set `DATABASE_URL` to `localhost` or `127.0.0.1` on Vercel. If you have both a bad `DATABASE_URL` and a good `POSTGRES_URL`, delete the localhost `DATABASE_URL` or the backend will prefer the remote URL automatically after the latest code change.
+- `PORT` = `4000` (optional on Vercel)
 
 ### Notes
 - Backend uses `backend/vercel.json` and exposes Express through `backend/api/index.js`.
