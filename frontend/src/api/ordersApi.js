@@ -20,3 +20,27 @@ export async function fetchOrderById(orderId) {
   const response = await fetch(`${API_BASE_URL}/orders/${orderId}`);
   return parseJsonResponse(response);
 }
+
+export async function createOrder(payload) {
+  const response = await fetch(`${API_BASE_URL}/orders`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+
+  return parseJsonResponse(response);
+}
+
+export async function updateOrderStatus(orderId, status) {
+  const response = await fetch(`${API_BASE_URL}/orders/${orderId}/status`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ status }),
+  });
+
+  return parseJsonResponse(response);
+}

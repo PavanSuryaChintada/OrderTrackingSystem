@@ -21,6 +21,8 @@ body {
   max-width: 1100px;
   margin: 0 auto;
   padding: 24px 16px 40px;
+  display: grid;
+  gap: 16px;
 }
 
 .app-header {
@@ -28,7 +30,6 @@ body {
   justify-content: space-between;
   align-items: flex-start;
   gap: 12px;
-  margin-bottom: 20px;
 }
 
 .app-header h1 {
@@ -40,13 +41,22 @@ body {
   color: #4b5563;
 }
 
-.refresh-button {
+button {
   border: none;
   background: #2563eb;
   color: #ffffff;
   padding: 10px 14px;
   border-radius: 8px;
   cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.refresh-button {
+  min-width: 110px;
 }
 
 .panel {
@@ -58,6 +68,44 @@ body {
 
 .panel h2 {
   margin-top: 0;
+}
+
+.form-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+label {
+  display: grid;
+  gap: 6px;
+  font-size: 14px;
+  color: #374151;
+}
+
+input {
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.form-actions {
+  align-self: end;
+}
+
+.lookup-row {
+  display: flex;
+  gap: 8px;
+  max-width: 420px;
+}
+
+.lookup-row input {
+  flex: 1;
+}
+
+.lookup-result {
+  margin: 12px 0 0;
 }
 
 .table-wrap {
@@ -111,6 +159,15 @@ th {
   color: #166534;
 }
 
+.small-button {
+  font-size: 12px;
+  padding: 8px 10px;
+}
+
 .error-text {
   color: #dc2626;
+}
+
+.success-text {
+  color: #15803d;
 }
