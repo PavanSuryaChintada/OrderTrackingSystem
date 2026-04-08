@@ -3,6 +3,8 @@ const env = require("../config/env");
 
 function poolOptions() {
   const url = env.databaseUrl;
+  const isRemote = !/127\.0\.0\.1|localhost/i.test(url);
+  const hasSslHint = /supabase\.co|pooler\.supabase|sslmode=require/i.test(url);
   const options = {
     connectionString: url,
   };
@@ -11,7 +13,7 @@ function poolOptions() {
     options.max = 1;
   }
 
-  if (/supabase\.co|pooler\.supabase|sslmode=require/i.test(url)) {
+  if (isRemote || hasSslHint) {
     options.ssl = { rejectUnauthorized: false };
   }
 
